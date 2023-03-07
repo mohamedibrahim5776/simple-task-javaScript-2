@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            text-transform: capitalize;
+        }
+        form {
+            /* display: grid; */
+            display: grid;
+            margin: 30px auto;
+            width: 300px;
+            gap: 10px;
+        }
+        input , select {
+            padding: 5px 10px;
+            border: 1px solid #c8c2c2;
+        }
+        input[type='button'] {
+            background-color: rgb(54, 187, 54);
+            color: white;
+            font-size: large;
+        }
+        .results {
+            display: grid;
+            grid-template-columns: repeat(3,1fr);
+            gap: 20px;
+        }
+        .results div ,.results section {
+            background-color: tomato;
+            color: white;
+            text-align: center;
+            padding: 7px;
+        } 
+        input[name='element'] {
+            background-color: black;
+        }
+    </style>
+</head>
+<body>
+    <form action="">
+        <input type="number" name="elements" class="input" placeholder="number of element"/>
+        <input type="text" name="text" class="input" placeholder="element text">
+        <select name="type" class="input">
+            <option value="section">section</option>
+            <option value="div">div</option>
+        </select>
+        <input type="button"  name="create" value="create">
+    </form>
+    <div class="results">
+
+    </div>
+    <script>
+        let Num = document.querySelector('[name="elements"]')
+        let select = document.querySelector('[name="type"]')
+        let create = document.querySelector('[name="create"]')
+        let results = document.querySelector('.results')
+        let div = results.children
+        let idDiv = document.createAttribute ('class')
+        let txt = document.querySelector('[name="text"]').value
+        let el = function(el,ind) {
+            return el.id =`id-${ind+1}`
+        }
+        
+        let submit = function() {
+            let dives =  [...div] 
+            for(i=0;i<Num.value;i++) {
+                console.log(dives)
+                x = dives.map((el)=>(el.remove()))
+                let txt = document.querySelector('[name="text"]').value
+                let childTxt = document.createTextNode(txt)
+                let childDiv = document.createElement (select.value)
+                results.appendChild(childDiv)
+                childDiv.appendChild(childTxt)
+                
+            }
+            let newDiv = dives.map(el)
+        }
+        create.onclick = submit
+
+        
+
+    </script>
+</body>
+</html>
